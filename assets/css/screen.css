@@ -1,0 +1,22 @@
+:root {
+  --background: #000;
+  --text: #fff;
+  --link: #fff;
+  --link-visited: #fff;
+  --link-hover: #fff;
+  --link-visited-hover: #fff;
+  --selection: #fff;
+  --selection-text: #000;
+  --selection-background: #fff;
+  --selection-background-light: #fff;
+  --selection-background-dark: #000;
+  --selection-background-darker: #000;
+  --selection-background-darkest: #000;
+  --selection-background-lighter: #fff;
+  --selection-background-lightest: #fff;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
