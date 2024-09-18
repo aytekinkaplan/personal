@@ -3,11 +3,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{meta_title}}</title>
-    <link rel="stylesheet" href="{{asset 'css/screen.css'}}" />
+    <meta name="description" content="{{meta_description}}" />
+    <link rel="stylesheet" href="{{asset 'built/screen.css'}}" />
     {{@ghost_head}}
   </head>
   <body>
-    {{{body}}}
+    <header class="gh-head">
+      <nav class="gh-head-menu">
+        <ul>
+          {{#each menu}}
+            <li><a href="{{url}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    </header>
+    <main class="gh-main">
+      {{{body}}}
+    </main>
+    <footer class="gh-foot">
+      <nav class="gh-foot-menu">
+        <ul>
+          {{#each menu}}
+            <li><a href="{{url}}">{{title}}</a></li>
+          {{/each}}
+        </ul>
+      </nav>
+    </footer>
+
     {{@ghost_footer}}
+
+    <script src="{{asset 'built/screen.js'}}"></script>
   </body>
 </html>
