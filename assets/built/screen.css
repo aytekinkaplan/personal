@@ -1,22 +1,194 @@
 :root {
-  --background: #000;
-  --text: #fff;
-  --link: #fff;
-  --link-visited: #fff;
-  --link-hover: #fff;
-  --link-visited-hover: #fff;
-  --selection: #fff;
-  --selection-text: #000;
-  --selection-background: #fff;
-  --selection-background-light: #fff;
-  --selection-background-dark: #000;
-  --selection-background-darker: #000;
-  --selection-background-darkest: #000;
-  --selection-background-lighter: #fff;
-  --selection-background-lightest: #fff;
+  --primary-color: #1a1a1a;
+  --secondary-color: #5a5a5a;
+  --accent-color: #3eb0ef;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-serif: "Merriweather", Georgia, serif;
 }
 
 body {
-  background-color: var(--background);
-  color: var(--text);
+  font-family: var(--font-sans);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.gh-viewport {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.gh-main {
+  flex-grow: 1;
+}
+
+/* Header styles */
+.gh-head {
+  padding: 2rem 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.gh-head-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gh-head-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.gh-head-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.gh-head-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.gh-head-link:hover {
+  color: var(--accent-color);
+}
+
+/* Main content styles */
+.gh-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.gh-postfeed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+/* Card styles */
+.gh-card {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.gh-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+.gh-card-image-wrapper {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.gh-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gh-card:hover .gh-card-image {
+  transform: scale(1.05);
+}
+
+.gh-card-content {
+  padding: 1.5rem;
+}
+
+.gh-card-title {
+  font-size: 1.4rem;
+  margin: 0 0 1rem;
+  color: var(--primary-color);
+}
+
+.gh-card-excerpt {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+}
+
+/* Post and Page styles */
+.gh-article {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.gh-article-title {
+  font-size: 2.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.gh-content {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.gh-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Footer styles */
+.gh-foot {
+  background-color: #f8f8f8;
+  padding: 3rem 0;
+  margin-top: 4rem;
+}
+
+.gh-foot-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gh-foot-menu {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.gh-foot-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
+.gh-foot-meta {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .gh-head-inner,
+  .gh-foot-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gh-postfeed {
+    grid-template-columns: 1fr;
+  }
+
+  .gh-article-title {
+    font-size: 2.2rem;
+  }
 }
