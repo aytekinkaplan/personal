@@ -34,14 +34,16 @@
               {{#if @member}}
                 <a class="gh-head-link" href="#/portal/account">Account</a>
               {{else}}
-                <a
-                  class="gh-head-button"
-                  href="{{@site.signup_url}}"
-                >Subscribe</a>
+                <a class="gh-head-button" href="{{@site.signup_url}}">{{t
+                    "Subscribe"
+                  }}</a>
               {{/if}}
             {{/if}}
           </div>
         </div>
+        <div class="gh-mobile-menu">
+        </div>
+        <div class="gh-overlay"></div>
       </header>
 
       <main class="gh-main gh-container">
