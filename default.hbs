@@ -29,35 +29,58 @@
             {{navigation}}
           </nav>
           <div class="gh-head-actions">
-            {{search}}
+            <button
+              class="gh-head-button gh-head-button-theme"
+              aria-label="Toggle theme"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24"><path
+                  fill="currentColor"
+                  d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+                /></svg>
+            </button>
+            <button
+              class="gh-head-button gh-head-button-search"
+              aria-label="Search"
+            >
+              <svg viewBox="0 0 24 24" width="24" height="24"><path
+                  fill="currentColor"
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+                /></svg>
+            </button>
             {{#if @site.members_enabled}}
               {{#if @member}}
-                <a class="gh-head-link" href="#/portal/account">Account</a>
+                <a class="gh-head-button" href="#/portal/account">Account</a>
               {{else}}
-                <a class="gh-head-button" href="{{@site.signup_url}}">{{t
-                    "Subscribe"
-                  }}</a>
+                <a
+                  class="gh-head-button gh-head-button-signup"
+                  href="{{@site.signup_url}}"
+                >{{t "Sign Up"}}</a>
               {{/if}}
             {{/if}}
           </div>
         </div>
-        <div class="gh-mobile-menu">
-        </div>
-        <div class="gh-overlay"></div>
       </header>
 
-      <main class="gh-main gh-container">
-        {{{body}}}
+      <main class="gh-main">
+        <div class="gh-container">
+          {{{body}}}
+        </div>
       </main>
 
-      <footer class="gh-foot gh-container">
-        <div class="gh-foot-inner">
-          <div class="gh-foot-menu">
-            {{navigation type="secondary"}}
-          </div>
-          <div class="gh-foot-meta">
-            Published with
-            <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+      <footer class="gh-foot">
+        <div class="gh-container">
+          <div class="gh-foot-inner">
+            <div class="gh-foot-menu">
+              {{navigation type="secondary"}}
+            </div>
+            <div class="gh-foot-meta">
+              Published with
+              <a
+                href="https://ghost.org"
+                target="_blank"
+                rel="noopener"
+              >Ghost</a>
+            </div>
           </div>
         </div>
       </footer>
