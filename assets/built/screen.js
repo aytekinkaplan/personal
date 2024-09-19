@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
           img.src = img.dataset.src;
           img.removeAttribute("data-src");
           imageObserver.unobserve(img);
+          img.addEventListener("load", () => {
+            img.classList.add("fade-in");
+          });
         }
       });
     },
@@ -43,7 +46,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, "text/html");
             const newPosts = doc.querySelectorAll(".gh-card");
-            newPosts.forEach((post) => postfeed.appendChild(post));
+            newPosts.forEach((post) => {
+              post.classList.add("fade-in");
+              postfeed.appendChild(post);
+            });
             nextPageUrl = doc.querySelector("link[rel=next]")?.href;
             if (!nextPageUrl) {
               observer.unobserve(entries[0].target);
@@ -59,28 +65,48 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(postfeed.lastElementChild);
   }
 
-  // Add 'data-src' to post images for lazy loading
-  document.querySelectorAll(".gh-content img").forEach((img) => {
-    img.dataset.src = img.src;
-    img.src =
-      "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="; // 1x1 transparent png
-  });
+  // Responsive navigation menu
+  const menuToggle = document.querySelector(".gh-burger");
+  const menu = document.querySelector(".gh-head-menu");
 
-  // Fade-in animation for posts
-  const fadeInPosts = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("fade-in");
-        observer.unobserve(entry.target);
-      }
+  if (menuToggle && menu) {
+    menuToggle.addEventListener("click", () => {
+      menu.classList.toggle("is-active");
+      menuToggle.classList.toggle("is-active");
     });
-  };
+  }
 
-  const fadeInObserver = new IntersectionObserver(fadeInPosts, {
-    threshold: 0.1,
+  // Reading progress bar
+  const progressBar = document.createElement("div");
+  progressBar.className = "reading-progress-bar";
+  document.body.appendChild(progressBar);
+
+  window.addEventListener("scroll", () => {
+    const winScroll =
+      document.body.scrollTop || document.documentElement.scrollTop;
+    const height =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = scrolled + "%";
   });
 
-  document.querySelectorAll(".gh-card").forEach((card) => {
-    fadeInObserver.observe(card);
+  // Dark mode toggle
+  const darkModeToggle = document.createElement("button");
+  darkModeToggle.innerHTML = "🌓";
+  darkModeToggle.className = "dark-mode-toggle";
+  document.body.appendChild(darkModeToggle);
+
+  darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem(
+      "darkMode",
+      document.body.classList.contains("dark-mode")
+    );
   });
+
+  // Check for saved dark mode preference
+  if (localStorage.getItem("darkMode") === "true") {
+    document.body.classList.add("dark-mode");
+  }
 });

@@ -1,7 +1,7 @@
 {{!< default}}
 
 {{#post}}
-<article class="gh-article {{post_class}}">
+<article class="gh-article {{post_class}} {{#has slug="about"}}gh-about-page{{/has}}">
     {{#match @page.show_title_and_feature_image}}
     <header class="gh-header gh-canvas">
         <h1 class="gh-title">{{title}}</h1>
@@ -22,8 +22,9 @@
     {{/match}}
 
     <div class="gh-content gh-canvas">
-        {{content}}
+        <div class="gh-content-inner">
+            {{content}}
+        </div>
     </div>
-
 </article>
 {{/post}}
